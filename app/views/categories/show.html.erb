@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  
+  <div class="col-md-8">
+    <h4 align="center"><%= @category.name %></h4>
+  </div>
+
+  <div class="col-md-2" align="right">
+  </div>
+</div>
+
+<table class="table table-condensed">
+	<% i=0; @products.each do |product| %>
+		<% if i==0 %>
+			<tr>
+				<td class="text-center">
+					<%= image_tag(product.picture, size: "200x300") %><br>
+					<%= link_to "Name: #{product.name}", product, :remote => true, :class => "btn btn-default btn-xs" %><br>
+					Code: <%= product.code %><br>
+					Rp <%= precision(product.price) %>
+				</td>
+				<% i+=1 %>
+		<% elsif i<3 %>
+				<td class="text-center">
+					<%= image_tag(product.picture, size: "200x300") %><br>
+					<%= link_to "Name: #{product.name}", product, :remote => true, :class => "btn btn-default btn-xs" %><br>
+					Code: <%= product.code %><br>
+					Rp <%= precision(product.price) %>
+				</td>
+				<% i+=1 %>
+		<% else %>
+			</tr>
+			<% i=0 %>
+		<% end %>
+	<% end %>
+</table>
+
+<div id="modal"></div>
+
+<!-- Modal -->
+<div id="general_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="BranchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-title"></h3>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

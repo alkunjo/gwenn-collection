@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GwennCollection</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<% @company = CompanyProfile.last %>
+		<%= image_tag(@company.header, size: "1150x200") if @company.present? %>
+
+		<div class="row">
+			<div class="col-md-2">
+				<% @categories = Category.order(:name) %>
+					<ul class="nav nav-pills nav-stacked">
+					  <li><%= link_to "HOME", root_path %></li><br>
+						<li class="disabled active"><a href="#">CATEGORIES</a></li>
+						<% @categories.each do |category| %>
+						  <li><%= link_to "#{category.try(:name)}", category %></li>
+						<% end %>
+
+						<!-- 
+						<li class="disabled"><a href="#">SETUP</a></li>
+					  <li><%= link_to "Category", categories_path %></li>
+					  <li><%= link_to "Product", products_path %></li>
+					  <li><%= link_to "Company", company_profiles_path %></li>
+						 -->
+					</ul>
+			</div>
+			<div class="col-md-10">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+
+</body>
+</html>

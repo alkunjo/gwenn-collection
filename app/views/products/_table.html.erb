@@ -1,0 +1,27 @@
+<table class="table table-condensed">
+  <tr style="background-color:#708DC6;">
+    <th>Category</th>
+    <th>Name</th>
+    <th>Merk</th>
+    <th>Size</th>
+    <th>Color</th>
+    <th class="text-right">Price (Rp)</th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.category.try(:name) %></td>
+    <td><%= product.name %></td>
+    <td><%= product.merk %></td>
+    <td><%= product.size %></td>
+    <td><%= product.color %></td>
+    <td class="text-right"><%= precision(product.price) %></td>
+    <td class="text-right">
+      <%= link_to "#{t 'show'}", product, :class => "btn btn-primary btn-xs" %>
+      <%= link_to "#{t 'edit'}", edit_product_path(product), :class => "btn btn-warning btn-xs", :remote => true %>
+      <%= link_to 'Destroy', product, method: :delete, :class => "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>
