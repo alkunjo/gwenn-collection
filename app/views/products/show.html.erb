@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-4">
+  	<%= link_to products_path, :class => "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;<%= t 'back' %>
+    <% end %>
+  </div>
+  
+  <div class="col-md-4">
+    <h4 align="center"><%= t 'product.products' %></h4>
+  </div>
+
+  <div class="col-md-4" align="right">
+  </div>
+</div>
+
+<div class="row">
+	<div class="col-md-5">
+		<%= image_tag(@product.picture, size: "200x300") %>
+	</div>
+
+	<div class="col-md-7">
+		Code: <%= @product.code %><br>
+		Merk: <%= @product.merk %><br>
+		Size: <%= @product.size %><br>
+		Color: <%= @product.color %><br>
+
+		<br>Deskripsi:<br>
+		<%= @product.description %>
+
+		<br>Price: Rp <%= precision(@product.price) %>
+	</div>
+</div>
